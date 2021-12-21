@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="bod">
+        <div class="container"> 
+            <div id="display">Numbers here</div>
+            <div class="keypad"> 
+                <div class="numberContainer">
+                    <div class="numbers"> 
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                    </div>
+                    <div class="numbers"> 
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                    </div>
+                    <div class="numbers"> 
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                    </div>
+                </div>      
+                <div class="operators"> 
+                    <button>c</button>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>*</button>
+                    <button>/</button>
+                    <button id="equals">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function add(x, y) {
+        return x + y; 
+    }
+
+    function subtract(x, y) {
+        return x - y; 
+    }
+    function multiply(x, y) {
+        return x * y; 
+    }
+    function divide(x, y) {
+        return x / y; 
+    }
+
+    function operate(x, y, operator) { 
+        if (operator === "+") {
+            return add(x, y); 
+        }
+        else if (operator === "-") {
+            return subtract(x, y); 
+        }
+        else if (operator === "*") {
+            return multiply(x, y); 
+        }
+        else if (operator === "/") {
+            return divide(x, y); 
+        }
+        
+    }
+
+    //set event listener to all number keys
+    let numberKeys = document.querySelectorAll(".numbers button");
+    numberKeys.forEach((key) => key.addEventListener("click", () => {
+        changeDisplay(event.target.textContent)
+    }));
+
+    //change display by adding input string
+    function changeDisplay(input) {
+        let display = document.getElementById("display").textContent;
+        document.getElementById("display").textContent = display + input; 
+    }
+</script>
+</html>
