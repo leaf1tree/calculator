@@ -90,7 +90,7 @@
     let inputArray =  [0]
     
     //saves display value
-    function saveValue1() {
+    function saveValue() {
         inputArray.push(document.getElementById("display").textContent); 
     }
 
@@ -106,7 +106,7 @@
     //set event listener to operators, saves 1st value after op, clears for next input
     let operatorKeys = document.querySelectorAll(".operators button"); 
     operatorKeys.forEach((key) => key.addEventListener("click", () => {
-        saveValue1();
+        saveValue();
         setOperation(event.target.textContent); 
         document.getElementById("display").textContent = "";
     })); 
@@ -120,18 +120,10 @@
     //save value2, run operator, display new result
     let equals = document.querySelector(".equals button"); 
     equals.addEventListener("click", () => {
-        saveValue2(); 
-        console.log(operate(Number(value1), Number(value2), operation)); 
-        document.getElementById("display").textContent = operate(Number(value1), Number(value2), operation);
+        saveValue(); 
+        document.getElementById("display").textContent = operate(Number(inputArray[inputArray.length - 2]), Number(inputArray[inputArray.length - 1]), operation);
     })
 
-    //global value2
-    let value2; 
-
-    //saves value2 
-    function saveValue2() {
-        value2 = document.getElementById("display").textContent;
-    }
 
     
 </script>
