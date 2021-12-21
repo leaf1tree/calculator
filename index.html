@@ -75,7 +75,6 @@
     let numberKeys = document.querySelectorAll(".numbers button");
     numberKeys.forEach((key) => key.addEventListener("click", () => {
         changeDisplay(event.target.textContent);
-        saveDisplay(event.target.textContent);
     }));
 
     //change display by adding input string
@@ -83,19 +82,21 @@
         let display = document.getElementById("display").textContent;
         document.getElementById("display").textContent = display + input; 
     }
-    //global display value
-    let currDisplay =  document.getElementById("display").textContent
+    //global display value, 1st value
+    let value1 =  document.getElementById("display").textContent
     
-    //saves new display value after each number input
-    function saveDisplay(input) {
-        currDisplay = document.getElementById("display").textContent
+    //saves display value
+    function saveValue1() {
+        value1 = document.getElementById("display").textContent
     }
 
     //set event listener to operators
     let operatorKeys = document.querySelectorAll(".operators button"); 
     operatorKeys.forEach((key) => key.addEventListener("click", () => {
+        saveValue1();
         setOperation(event.target.textContent); 
-        document.getElementById("display").textContent = ""; 
+        document.getElementById("display").textContent = "";
+
     })); 
 
     //global operator value
@@ -103,5 +104,7 @@
     function setOperation(input) {
         operation = input; 
     }
+
+
 </script>
 </html>
