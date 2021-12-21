@@ -113,6 +113,7 @@
     equals.addEventListener("click", () => {
         saveValue2(); 
         console.log(operate(Number(value1), Number(value2), operation)); 
+        document.getElementById("display").textContent = operate(Number(value1), Number(value2), operation);
     })
 
     //global value2
