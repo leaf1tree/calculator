@@ -10,7 +10,7 @@
 <body>
     <div class="bod">
         <div class="container"> 
-            <div id="display">Numbers here</div>
+            <div id="display"></div>
             <div class="keypad"> 
                 <div class="numberContainer">
                     <div class="numbers"> 
@@ -68,20 +68,40 @@
         }
         else if (operator === "/") {
             return divide(x, y); 
-        }
-        
+        }        
     }
 
     //set event listener to all number keys
     let numberKeys = document.querySelectorAll(".numbers button");
     numberKeys.forEach((key) => key.addEventListener("click", () => {
-        changeDisplay(event.target.textContent)
+        changeDisplay(event.target.textContent);
+        saveDisplay(event.target.textContent);
     }));
 
     //change display by adding input string
     function changeDisplay(input) {
         let display = document.getElementById("display").textContent;
         document.getElementById("display").textContent = display + input; 
+    }
+    //global display value
+    let currDisplay =  document.getElementById("display").textContent
+    
+    //saves new display value after each number input
+    function saveDisplay(input) {
+        currDisplay = document.getElementById("display").textContent
+    }
+
+    //set event listener to operators
+    let operatorKeys = document.querySelectorAll(".operators button"); 
+    operatorKeys.forEach((key) => key.addEventListener("click", () => {
+        setOperation(event.target.textContent); 
+        document.getElementById("display").textContent = ""; 
+    })); 
+
+    //global operator value
+    let operation;
+    function setOperation(input) {
+        operation = input; 
     }
 </script>
 </html>
