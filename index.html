@@ -30,8 +30,10 @@
                     </div>
                 </div>      
                 <div class="right-cont">
+                    <div class="clear">
+                        <button>c</button>
+                    </div>
                     <div class="operators"> 
-                        <button id="clear">c</button>
                         <button>+</button>
                         <button>-</button>
                         <button>*</button>
@@ -95,10 +97,11 @@
     }
 
     function clear() {
+        inputArray = [0];
         document.getElementById("display").textContent = ""; 
     }
     //clear display and values
-    let clears = document.querySelector(".operators #clear"); 
+    let clears = document.querySelector(".clear button"); 
     clears.addEventListener("click", () => {
         clear(); 
     });
@@ -117,7 +120,7 @@
         operation = input; 
     }
 
-    //save value2, run operator, display new result
+    //save value, run operator, display new result
     let equals = document.querySelector(".equals button"); 
     equals.addEventListener("click", () => {
         saveValue(); 
