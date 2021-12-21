@@ -29,13 +29,17 @@
                         <button>9</button>
                     </div>
                 </div>      
-                <div class="operators"> 
-                    <button>c</button>
-                    <button>+</button>
-                    <button>-</button>
-                    <button>*</button>
-                    <button>/</button>
-                    <button id="equals">=</button>
+                <div class="right-cont">
+                    <div class="operators"> 
+                        <button>c</button>
+                        <button>+</button>
+                        <button>-</button>
+                        <button>*</button>
+                        <button>/</button>
+                    </div>
+                    <div class="equals"> 
+                        <button>=</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,13 +94,12 @@
         value1 = document.getElementById("display").textContent
     }
 
-    //set event listener to operators
+    //set event listener to operators, saves 1st value after op, clears for next input
     let operatorKeys = document.querySelectorAll(".operators button"); 
     operatorKeys.forEach((key) => key.addEventListener("click", () => {
         saveValue1();
         setOperation(event.target.textContent); 
         document.getElementById("display").textContent = "";
-
     })); 
 
     //global operator value
@@ -105,6 +108,14 @@
         operation = input; 
     }
 
+    let equals = document.querySelector(".operators #equals"); 
+    equals.addEventListener("click", () => {
+        saveValue2(); 
+    })
 
+    let value2; 
+    function saveValue2() {
+        value2 = document.getElementById("display").textContent;
+    }
 </script>
 </html>

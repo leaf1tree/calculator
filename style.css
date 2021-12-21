@@ -37,18 +37,28 @@
     flex: 1; 
 }
 
-.operators {
+.right-cont {
     display: flex; 
     flex-direction: column;
     padding-left: 10px;
     width: 30px; 
 }
 
+.operators {
+    display: flex; 
+    flex: 1; 
+    flex-direction: column;
+}
 .operators button {
     flex: 1; 
 }
 
-#equals {
-    flex: 2; 
+.equals {
+    flex: 0.5; 
+    display: flex;
+}
+
+.equals button {
+    flex: 1; 
     background-color: palegoldenrod;
 }
