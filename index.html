@@ -31,7 +31,7 @@
                 </div>      
                 <div class="right-cont">
                     <div class="operators"> 
-                        <button>c</button>
+                        <button id="clear">c</button>
                         <button>+</button>
                         <button>-</button>
                         <button>*</button>
@@ -86,13 +86,22 @@
         let display = document.getElementById("display").textContent;
         document.getElementById("display").textContent = display + input; 
     }
-    //global display value, 1st value
-    let value1 =  document.getElementById("display").textContent
+    //create global array to store series input
+    let inputArray =  [0]
     
     //saves display value
     function saveValue1() {
-        value1 = document.getElementById("display").textContent
+        inputArray.push(document.getElementById("display").textContent); 
     }
+
+    function clear() {
+        document.getElementById("display").textContent = ""; 
+    }
+    //clear display and values
+    let clears = document.querySelector(".operators #clear"); 
+    clears.addEventListener("click", () => {
+        clear(); 
+    });
 
     //set event listener to operators, saves 1st value after op, clears for next input
     let operatorKeys = document.querySelectorAll(".operators button"); 
@@ -123,5 +132,7 @@
     function saveValue2() {
         value2 = document.getElementById("display").textContent;
     }
+
+    
 </script>
 </html>
