@@ -108,12 +108,17 @@
         operation = input; 
     }
 
-    let equals = document.querySelector(".operators #equals"); 
+    //save value2, run operator, display new result
+    let equals = document.querySelector(".equals button"); 
     equals.addEventListener("click", () => {
         saveValue2(); 
+        console.log(operate(Number(value1), Number(value2), operation)); 
     })
 
+    //global value2
     let value2; 
+
+    //saves value2 
     function saveValue2() {
         value2 = document.getElementById("display").textContent;
     }
