@@ -77,10 +77,24 @@
         }        
     }
 
+    //initialize global values 
+    //create global array to store series input
+    let inputArray =  [];
+    let operation;
+    let operationListener = 0; 
+    let liveResult; 
+
     //set event listener to all number keys
     let numberKeys = document.querySelectorAll(".numbers button");
     numberKeys.forEach((key) => key.addEventListener("click", () => {
-        changeDisplay(event.target.textContent);
+        if (operationListener === 0) {
+            changeDisplay(event.target.textContent);
+        }
+        else if (operationListener === 1) {
+            document.getElementById("display").textContent = ""; 
+            changeDisplay(event.target.textContent);
+            operationListener = 0; 
+        }
     }));
 
     //change display by adding input string
@@ -88,16 +102,49 @@
         let display = document.getElementById("display").textContent;
         document.getElementById("display").textContent = display + input; 
     }
-    //create global array to store series input
-    let inputArray =  [0]
-    
-    //saves display value
-    function saveValue() {
-        inputArray.push(document.getElementById("display").textContent); 
+
+    //set event listener to operators, saves 1st value after op, clears for next input
+    let operatorKeys = document.querySelectorAll(".operators button"); 
+    operatorKeys.forEach((key) => key.addEventListener("click", () => {
+        saveValue();
+        setOperation(event.target.textContent); 
+        //calculate result
+        if (inputArray[0] == null) {
+            liveResult = Number(inputArray[1]); 
+            shiftValues();
+        }
+        else {
+            liveResult = operate(Number(inputArray[0]), Number(inputArray[1]), operation);
+            shiftValues(); 
+        }        
+        operationListener = 1; 
+    })); 
+
+    function shiftValues() {
+        inputArray[0] = inputArray [1]; 
     }
 
+    //saves display value
+    function saveValue() {
+        inputArray[1] = document.getElementById("display").textContent; 
+    }
+
+    //global operator value
+    function setOperation(input) {
+        operation = input; 
+    }
+        
+    //save value, run operator, display new result
+    let equals = document.querySelector(".equals button"); 
+    equals.addEventListener("click", () => {
+        saveValue(); 
+        document.getElementById("display").textContent = operate(Number(liveResult), Number(inputArray[inputArray.length - 1]), operation);
+        liveResult = document.getElementById("display").textContent;
+
+    })
+
     function clear() {
-        inputArray = [0];
+        inputArray = [];
         document.getElementById("display").textContent = ""; 
     }
     //clear display and values
@@ -105,29 +152,5 @@
     clears.addEventListener("click", () => {
         clear(); 
     });
-
-    //set event listener to operators, saves 1st value after op, clears for next input
-    let operatorKeys = document.querySelectorAll(".operators button"); 
-    operatorKeys.forEach((key) => key.addEventListener("click", () => {
-        saveValue();
-        setOperation(event.target.textContent); 
-        document.getElementById("display").textContent = "";
-    })); 
-
-    //global operator value
-    let operation;
-    function setOperation(input) {
-        operation = input; 
-    }
-
-    //save value, run operator, display new result
-    let equals = document.querySelector(".equals button"); 
-    equals.addEventListener("click", () => {
-        saveValue(); 
-        document.getElementById("display").textContent = operate(Number(inputArray[inputArray.length - 2]), Number(inputArray[inputArray.length - 1]), operation);
-    })
-
-
-    
 </script>
 </html>
