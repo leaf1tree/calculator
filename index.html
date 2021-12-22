@@ -84,7 +84,7 @@
     let operationListener = 0; 
     let liveResult; 
 
-    //set event listener to all number keys
+    //set event listener to all number keys, numbers concat unless operator applied
     let numberKeys = document.querySelectorAll(".numbers button");
     numberKeys.forEach((key) => key.addEventListener("click", () => {
         if (operationListener === 0) {
@@ -107,17 +107,21 @@
     let operatorKeys = document.querySelectorAll(".operators button"); 
     operatorKeys.forEach((key) => key.addEventListener("click", () => {
         saveValue();
-        setOperation(event.target.textContent); 
         //calculate result
         if (inputArray[0] == null) {
+            setOperation(event.target.textContent)
             liveResult = Number(inputArray[1]); 
             shiftValues();
         }
         else {
             liveResult = operate(Number(inputArray[0]), Number(inputArray[1]), operation);
+            inputArray[1] = liveResult; 
             shiftValues(); 
+            setOperation(event.target.textContent); 
         }        
         operationListener = 1; 
+        document.getElementById("display").textContent = liveResult; 
+
     })); 
 
     function shiftValues() {
