@@ -44,9 +44,11 @@
     padding-left: 10px;
     width: 30px; 
 }
+
 .clear {
     display: flex; 
 }
+
 .clear button {
     flex: 1;
 }

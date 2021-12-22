@@ -10,7 +10,7 @@
 <body>
     <div class="bod">
         <div class="container"> 
-            <div id="display"></div>
+            <div id="display">&nbsp;</div>
             <div class="keypad"> 
                 <div class="numberContainer">
                     <div class="numbers"> 
@@ -27,6 +27,9 @@
                         <button>7</button>
                         <button>8</button>
                         <button>9</button>
+                    </div>
+                    <div class="numbers"> 
+                        <button>0</button>
                     </div>
                 </div>      
                 <div class="right-cont">
@@ -142,14 +145,14 @@
     let equals = document.querySelector(".equals button"); 
     equals.addEventListener("click", () => {
         saveValue(); 
-        document.getElementById("display").textContent = operate(Number(liveResult), Number(inputArray[inputArray.length - 1]), operation);
+        document.getElementById("display").textContent = operate(Number(liveResult), Number(inputArray[1]), operation);
         liveResult = document.getElementById("display").textContent;
-
+        operationListener = 1;
     })
 
     function clear() {
         inputArray = [];
-        document.getElementById("display").textContent = ""; 
+        document.getElementById("display").innerHTML = "&nbsp;"
     }
     //clear display and values
     let clears = document.querySelector(".clear button"); 
